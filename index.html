@@ -499,6 +499,8 @@
                 0 0 10px var(--silver-color),
                 2px 2px 4px rgba(0, 0, 0, 0.5);
             animation: blink 2s infinite;
+            cursor: pointer;
+            text-decoration: none;
         }
 
         .map-text {
@@ -998,7 +1000,7 @@
                                 </div>
                                 <div class="map-container">
                                     <a href="https://maps.app.goo.gl/eZKgRJKq8RzwMJpT7" target="_blank"
-                                        rel="noopener noreferrer" class="map-link">
+                                        rel="noopener noreferrer" class="map-link" id="map-link">
                                         <i class="fas fa-map-marked-alt"></i>
                                     </a>
                                     <div class="map-text">Clic para ver en el mapa</div>
@@ -1037,6 +1039,7 @@
             const musicControl = document.getElementById('music-control');
             const backgroundMusic = document.getElementById('background-music');
             const indicatorsContainer = document.getElementById('indicators');
+            const mapLink = document.getElementById('map-link');
 
             let currentSlide = 0;
             const totalSlides = document.querySelectorAll('.slide').length;
@@ -1045,19 +1048,17 @@
             let currentX = 0;
             let isDragging = false;
 
-            // Inicializar la invitación
+            // ---------------- Inicialización ----------------
             function initInvitation() {
                 createIndicators();
                 goToSlide(0);
                 adjustLayoutForDevice();
             }
 
-            // Ajustar layout según el dispositivo
             function adjustLayoutForDevice() {
                 const isMobile = window.innerWidth <= 768;
                 const isLandscape = window.innerHeight <= 500;
 
-                // Ajustar padding y márgenes según el dispositivo
                 const slides = document.querySelectorAll('.slide');
                 slides.forEach(slide => {
                     slide.style.height = window.innerHeight + 'px';
@@ -1066,7 +1067,6 @@
                     }
                 });
 
-                // Ajustar contenido para landscape
                 if (isLandscape) {
                     document.querySelectorAll('.scrollable-content').forEach(content => {
                         content.style.justifyContent = 'flex-start';
@@ -1075,7 +1075,6 @@
                 }
             }
 
-            // Crear indicadores
             function createIndicators() {
                 indicatorsContainer.innerHTML = '';
                 for (let i = 0; i < totalSlides; i++) {
@@ -1086,19 +1085,15 @@
                 }
             }
 
-            // Función para ir a una diapositiva específica
             function goToSlide(slideIndex) {
                 if (slideIndex < 0) slideIndex = 0;
                 if (slideIndex >= totalSlides) slideIndex = totalSlides - 1;
 
                 currentSlide = slideIndex;
                 carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-                // Actualizar indicadores
                 updateIndicators();
             }
 
-            // Actualizar indicadores
             function updateIndicators() {
                 const indicators = document.querySelectorAll('.indicator');
                 indicators.forEach((indicator, index) => {
@@ -1106,17 +1101,18 @@
                 });
             }
 
-            // Eventos para el deslizamiento
+            // ---------------- Drag / Swipe ----------------
             carouselContainer.addEventListener('mousedown', startDrag);
             carouselContainer.addEventListener('mousemove', drag);
             carouselContainer.addEventListener('mouseup', endDrag);
             carouselContainer.addEventListener('mouseleave', endDrag);
 
-            carouselContainer.addEventListener('touchstart', startDragTouch, { passive: false });
-            carouselContainer.addEventListener('touchmove', dragTouch, { passive: false });
+            carouselContainer.addEventListener('touchstart', startDragTouch);
+            carouselContainer.addEventListener('touchmove', dragTouch);
             carouselContainer.addEventListener('touchend', endDrag);
 
             function startDrag(e) {
+                if (e.target.closest('a')) return; // No iniciar drag sobre enlaces
                 isDragging = true;
                 startX = e.pageX;
                 carouselContainer.classList.add('grabbing');
@@ -1124,11 +1120,11 @@
             }
 
             function startDragTouch(e) {
+                if (e.target.closest('a')) return; // No iniciar drag sobre enlaces
                 isDragging = true;
                 startX = e.touches[0].clientX;
                 carouselContainer.classList.add('grabbing');
                 carousel.style.transition = 'none';
-                e.preventDefault();
             }
 
             function drag(e) {
@@ -1143,7 +1139,6 @@
                 currentX = e.touches[0].clientX;
                 const diff = currentX - startX;
                 carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
-                e.preventDefault();
             }
 
             function endDrag() {
@@ -1166,7 +1161,7 @@
                 }
             }
 
-            // Evento para el corazón - CORREGIDO
+            // ---------------- Apertura invitación ----------------
             heartContainer.addEventListener('click', openInvitation);
             heartContainer.addEventListener('touchend', openInvitation);
 
@@ -1185,7 +1180,6 @@
                     invitationContent.classList.remove('hidden');
                     musicControl.classList.remove('hidden');
 
-                    // Intentar reproducir música
                     backgroundMusic.play().catch(e => {
                         console.log('La reproducción automática fue bloqueada');
                         musicControl.style.animation = 'pulse 2s infinite';
@@ -1196,7 +1190,7 @@
                 }, 1500);
             }
 
-            // Control de música
+            // ---------------- Control música ----------------
             musicControl.addEventListener('click', function () {
                 if (isMusicPlaying) {
                     backgroundMusic.pause();
@@ -1210,13 +1204,22 @@
                 isMusicPlaying = !isMusicPlaying;
             });
 
-            // Efecto de escritura
+            // ---------------- Enlace mapa ----------------
+            mapLink.addEventListener('click', function (e) {
+                console.log('Enlace del mapa clickeado');
+            });
+
+            mapLink.addEventListener('touchend', function (e) {
+                console.log('Enlace del mapa tocado');
+            });
+
+            // ---------------- Efecto de escritura ----------------
             const typingElements = document.querySelectorAll('.typing-text');
             typingElements.forEach((element, index) => {
                 element.style.animationDelay = `${index * 0.6}s`;
             });
 
-            // Navegación con teclado
+            // ---------------- Navegación con teclado ----------------
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'ArrowLeft') {
                     goToSlide(currentSlide - 1);
@@ -1225,23 +1228,17 @@
                 }
             });
 
-            // Redimensionar ventana
+            // ---------------- Redimensionar ventana ----------------
             window.addEventListener('resize', function () {
                 goToSlide(currentSlide);
                 adjustLayoutForDevice();
             });
 
-            // Prevenir acciones por defecto en móviles
-            document.addEventListener('touchmove', function (e) {
-                if (isDragging) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
-
-            // Inicializar
+            // ---------------- Inicializar ----------------
             adjustLayoutForDevice();
         });
     </script>
+
 </body>
 
 </html>
