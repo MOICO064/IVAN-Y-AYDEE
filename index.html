@@ -1029,226 +1029,232 @@
     </audio>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const carousel = document.getElementById('carousel');
-            const carouselContainer = document.getElementById('invitation-content');
-            const invitationContent = document.getElementById('invitation-content');
-            const heartContainer = document.getElementById('heart-container');
-            const coverLeft = document.getElementById('cover-left');
-            const coverRight = document.getElementById('cover-right');
-            const musicControl = document.getElementById('music-control');
-            const backgroundMusic = document.getElementById('background-music');
-            const indicatorsContainer = document.getElementById('indicators');
-            const mapLink = document.getElementById('map-link');
+document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.getElementById('carousel');
+    const carouselContainer = document.getElementById('invitation-content');
+    const invitationContent = document.getElementById('invitation-content');
+    const heartContainer = document.getElementById('heart-container');
+    const coverLeft = document.getElementById('cover-left');
+    const coverRight = document.getElementById('cover-right');
+    const musicControl = document.getElementById('music-control');
+    const backgroundMusic = document.getElementById('background-music');
+    const indicatorsContainer = document.getElementById('indicators');
+    const mapLink = document.getElementById('map-link');
 
-            let currentSlide = 0;
-            const totalSlides = document.querySelectorAll('.slide').length;
-            let isMusicPlaying = false;
-            let startX = 0;
-            let currentX = 0;
-            let isDragging = false;
+    let currentSlide = 0;
+    const totalSlides = document.querySelectorAll('.slide').length;
+    let isMusicPlaying = false;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
 
-            // Inicializar la invitación
-            function initInvitation() {
-                createIndicators();
-                goToSlide(0);
-                adjustLayoutForDevice();
+    // Inicializar la invitación
+    function initInvitation() {
+        createIndicators();
+        goToSlide(0);
+        adjustLayoutForDevice();
+    }
+
+    // Ajustar layout según el dispositivo
+    function adjustLayoutForDevice() {
+        const isMobile = window.innerWidth <= 768;
+        const isLandscape = window.innerHeight <= 500;
+
+        const slides = document.querySelectorAll('.slide');
+        slides.forEach(slide => {
+            slide.style.height = window.innerHeight + 'px';
+            if (isMobile) {
+                slide.style.padding = isLandscape ? '0.2rem' : '0.4rem';
             }
-
-            // Ajustar layout según el dispositivo
-            function adjustLayoutForDevice() {
-                const isMobile = window.innerWidth <= 768;
-                const isLandscape = window.innerHeight <= 500;
-
-                // Ajustar padding y márgenes según el dispositivo
-                const slides = document.querySelectorAll('.slide');
-                slides.forEach(slide => {
-                    slide.style.height = window.innerHeight + 'px';
-                    if (isMobile) {
-                        slide.style.padding = isLandscape ? '0.2rem' : '0.4rem';
-                    }
-                });
-
-                // Ajustar contenido para landscape
-                if (isLandscape) {
-                    document.querySelectorAll('.scrollable-content').forEach(content => {
-                        content.style.justifyContent = 'flex-start';
-                        content.style.paddingTop = '0.8vh';
-                    });
-                }
-            }
-
-            // Crear indicadores
-            function createIndicators() {
-                indicatorsContainer.innerHTML = '';
-                for (let i = 0; i < totalSlides; i++) {
-                    const indicator = document.createElement('div');
-                    indicator.classList.add('indicator');
-                    indicator.addEventListener('click', () => goToSlide(i));
-                    indicatorsContainer.appendChild(indicator);
-                }
-            }
-
-            // Función para ir a una diapositiva específica
-            function goToSlide(slideIndex) {
-                if (slideIndex < 0) slideIndex = 0;
-                if (slideIndex >= totalSlides) slideIndex = totalSlides - 1;
-
-                currentSlide = slideIndex;
-                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-                // Actualizar indicadores
-                updateIndicators();
-            }
-
-            // Actualizar indicadores
-            function updateIndicators() {
-                const indicators = document.querySelectorAll('.indicator');
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentSlide);
-                });
-            }
-
-            // Eventos para el deslizamiento
-            carouselContainer.addEventListener('mousedown', startDrag);
-            carouselContainer.addEventListener('mousemove', drag);
-            carouselContainer.addEventListener('mouseup', endDrag);
-            carouselContainer.addEventListener('mouseleave', endDrag);
-
-            carouselContainer.addEventListener('touchstart', startDragTouch);
-            carouselContainer.addEventListener('touchmove', dragTouch);
-            carouselContainer.addEventListener('touchend', endDrag);
-
-            function startDrag(e) {
-                isDragging = true;
-                startX = e.pageX;
-                carouselContainer.classList.add('grabbing');
-                carousel.style.transition = 'none';
-            }
-
-            function startDragTouch(e) {
-                isDragging = true;
-                startX = e.touches[0].clientX;
-                carouselContainer.classList.add('grabbing');
-                carousel.style.transition = 'none';
-            }
-
-            function drag(e) {
-                if (!isDragging) return;
-                currentX = e.pageX;
-                const diff = currentX - startX;
-                carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
-            }
-
-            function dragTouch(e) {
-                if (!isDragging) return;
-                currentX = e.touches[0].clientX;
-                const diff = currentX - startX;
-                carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
-            }
-
-            function endDrag() {
-                if (!isDragging) return;
-
-                isDragging = false;
-                carouselContainer.classList.remove('grabbing');
-                carousel.style.transition = 'transform 0.6s ease';
-
-                const diff = currentX - startX;
-                const slideWidth = window.innerWidth;
-                const threshold = slideWidth * 0.15;
-
-                if (diff < -threshold && currentSlide < totalSlides - 1) {
-                    goToSlide(currentSlide + 1);
-                } else if (diff > threshold && currentSlide > 0) {
-                    goToSlide(currentSlide - 1);
-                } else {
-                    goToSlide(currentSlide);
-                }
-            }
-
-            // Evento para el corazón
-            heartContainer.addEventListener('click', openInvitation);
-            heartContainer.addEventListener('touchend', openInvitation);
-
-            function openInvitation(e) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                coverLeft.style.transform = 'rotateY(-90deg) translateZ(-100px)';
-                coverRight.style.transform = 'rotateY(90deg) translateZ(-100px)';
-
-                setTimeout(() => {
-                    heartContainer.style.display = 'none';
-                    coverLeft.style.display = 'none';
-                    coverRight.style.display = 'none';
-
-                    invitationContent.classList.remove('hidden');
-                    musicControl.classList.remove('hidden');
-
-                    // Intentar reproducir música
-                    backgroundMusic.play().catch(e => {
-                        console.log('La reproducción automática fue bloqueada');
-                        musicControl.style.animation = 'pulse 2s infinite';
-                    });
-                    isMusicPlaying = true;
-
-                    initInvitation();
-                }, 1500);
-            }
-
-            // Control de música
-            musicControl.addEventListener('click', function () {
-                if (isMusicPlaying) {
-                    backgroundMusic.pause();
-                    musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                    musicControl.style.animation = 'none';
-                } else {
-                    backgroundMusic.play();
-                    musicControl.innerHTML = '<i class="fas fa-music"></i>';
-                    musicControl.style.animation = 'none';
-                }
-                isMusicPlaying = !isMusicPlaying;
-            });
-
-            // Evento específico para el enlace del mapa
-            mapLink.addEventListener('click', function(e) {
-                // Permitir que el enlace funcione normalmente
-                // No prevenir el comportamiento por defecto
-                console.log('Enlace del mapa clickeado');
-            });
-
-            mapLink.addEventListener('touchend', function(e) {
-                // Permitir que el enlace funcione en dispositivos táctiles
-                // No prevenir el comportamiento por defecto
-                console.log('Enlace del mapa tocado');
-            });
-
-            // Efecto de escritura
-            const typingElements = document.querySelectorAll('.typing-text');
-            typingElements.forEach((element, index) => {
-                element.style.animationDelay = `${index * 0.6}s`;
-            });
-
-            // Navegación con teclado
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'ArrowLeft') {
-                    goToSlide(currentSlide - 1);
-                } else if (e.key === 'ArrowRight') {
-                    goToSlide(currentSlide + 1);
-                }
-            });
-
-            // Redimensionar ventana
-            window.addEventListener('resize', function () {
-                goToSlide(currentSlide);
-                adjustLayoutForDevice();
-            });
-
-            // Inicializar
-            adjustLayoutForDevice();
         });
-    </script>
+
+        if (isLandscape) {
+            document.querySelectorAll('.scrollable-content').forEach(content => {
+                content.style.justifyContent = 'flex-start';
+                content.style.paddingTop = '0.8vh';
+            });
+        }
+    }
+
+    // Crear indicadores
+    function createIndicators() {
+        indicatorsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+    }
+
+    // Ir a slide específica
+    function goToSlide(slideIndex) {
+        if (slideIndex < 0) slideIndex = 0;
+        if (slideIndex >= totalSlides) slideIndex = totalSlides - 1;
+
+        currentSlide = slideIndex;
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        updateIndicators();
+    }
+
+    // Actualizar indicadores
+    function updateIndicators() {
+        const indicators = document.querySelectorAll('.indicator');
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    // ---------------- Drag / Swipe ----------------
+
+    // Mouse events
+    carouselContainer.addEventListener('mousedown', startDrag);
+    carouselContainer.addEventListener('mousemove', drag);
+    carouselContainer.addEventListener('mouseup', endDrag);
+    carouselContainer.addEventListener('mouseleave', endDrag);
+
+    // Touch events
+    carouselContainer.addEventListener('touchstart', startDragTouch);
+    carouselContainer.addEventListener('touchmove', dragTouch);
+    carouselContainer.addEventListener('touchend', endDrag);
+
+    function startDrag(e) {
+        if (e.target.closest('a')) return; // No iniciar drag sobre enlaces
+        isDragging = true;
+        startX = e.pageX;
+        carouselContainer.classList.add('grabbing');
+        carousel.style.transition = 'none';
+    }
+
+    function startDragTouch(e) {
+        if (e.target.closest('a')) return; // No iniciar drag sobre enlaces
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        carouselContainer.classList.add('grabbing');
+        carousel.style.transition = 'none';
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        currentX = e.pageX;
+        const diff = currentX - startX;
+        carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
+    }
+
+    function dragTouch(e) {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+        carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${diff}px))`;
+    }
+
+    function endDrag() {
+        if (!isDragging) return;
+
+        isDragging = false;
+        carouselContainer.classList.remove('grabbing');
+        carousel.style.transition = 'transform 0.6s ease';
+
+        const diff = currentX - startX;
+        const slideWidth = window.innerWidth;
+        const threshold = slideWidth * 0.15;
+
+        if (diff < -threshold && currentSlide < totalSlides - 1) {
+            goToSlide(currentSlide + 1);
+        } else if (diff > threshold && currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+        } else {
+            goToSlide(currentSlide);
+        }
+    }
+
+    // ---------------- Apertura invitación ----------------
+
+    heartContainer.addEventListener('click', openInvitation);
+    heartContainer.addEventListener('touchend', openInvitation);
+
+    function openInvitation(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        coverLeft.style.transform = 'rotateY(-90deg) translateZ(-100px)';
+        coverRight.style.transform = 'rotateY(90deg) translateZ(-100px)';
+
+        setTimeout(() => {
+            heartContainer.style.display = 'none';
+            coverLeft.style.display = 'none';
+            coverRight.style.display = 'none';
+
+            invitationContent.classList.remove('hidden');
+            musicControl.classList.remove('hidden');
+
+            backgroundMusic.play().catch(e => {
+                console.log('La reproducción automática fue bloqueada');
+                musicControl.style.animation = 'pulse 2s infinite';
+            });
+            isMusicPlaying = true;
+
+            initInvitation();
+        }, 1500);
+    }
+
+    // ---------------- Control música ----------------
+
+    musicControl.addEventListener('click', function () {
+        if (isMusicPlaying) {
+            backgroundMusic.pause();
+            musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            musicControl.style.animation = 'none';
+        } else {
+            backgroundMusic.play();
+            musicControl.innerHTML = '<i class="fas fa-music"></i>';
+            musicControl.style.animation = 'none';
+        }
+        isMusicPlaying = !isMusicPlaying;
+    });
+
+    // ---------------- Enlace mapa ----------------
+
+    mapLink.addEventListener('click', function (e) {
+        console.log('Enlace del mapa clickeado');
+        // No se hace preventDefault, el enlace funciona normalmente
+    });
+
+    mapLink.addEventListener('touchend', function (e) {
+        console.log('Enlace del mapa tocado');
+        // No se hace preventDefault, el enlace funciona normalmente
+    });
+
+    // ---------------- Efecto de escritura ----------------
+
+    const typingElements = document.querySelectorAll('.typing-text');
+    typingElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.6}s`;
+    });
+
+    // ---------------- Navegación con teclado ----------------
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') {
+            goToSlide(currentSlide - 1);
+        } else if (e.key === 'ArrowRight') {
+            goToSlide(currentSlide + 1);
+        }
+    });
+
+    // ---------------- Redimensionar ventana ----------------
+
+    window.addEventListener('resize', function () {
+        goToSlide(currentSlide);
+        adjustLayoutForDevice();
+    });
+
+    // ---------------- Inicializar ----------------
+
+    adjustLayoutForDevice();
+});
+</script>
 </body>
 
 </html>
