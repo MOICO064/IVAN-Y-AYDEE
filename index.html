@@ -9,36 +9,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="icon" type="image/png" href="./assets/anillos.jpg" />
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Alex+Brush&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Alex+Brush&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
+         :root {
             --silver-color: #c0c0c0;
             --dark-silver: #a8a8a8;
             --light-silver: #e8e8e8;
             --bright-silver: #f0f0f0;
             --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-
+        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
-
+        
         html,
         body {
             width: 100%;
             height: 100%;
             overflow: hidden;
             font-family: 'Cormorant Garamond', serif;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.5);
             position: fixed;
         }
-
+        
         body {
             background-image: url('./assets/fondo-invitacion.jpg');
             background-size: cover;
@@ -50,7 +48,7 @@
             width: 100%;
             height: 100%;
         }
-
+        
         .carousel-container {
             position: relative;
             width: 100%;
@@ -59,18 +57,18 @@
             overflow: hidden;
             cursor: grab;
         }
-
+        
         .carousel-container.grabbing {
             cursor: grabbing;
         }
-
+        
         .carousel {
             display: flex;
             transition: transform 0.6s ease;
             height: 100%;
             will-change: transform;
         }
-
+        
         .slide {
             min-width: 100%;
             height: 100vh;
@@ -84,7 +82,7 @@
             overflow: hidden;
             flex-shrink: 0;
         }
-
+        
         .floral-decoration {
             position: absolute;
             z-index: 1;
@@ -97,27 +95,27 @@
             object-fit: contain;
             opacity: 0.7;
         }
-
+        
         .floral-top-left {
             top: 5px;
             left: 5px;
         }
-
+        
         .floral-top-right {
             top: 5px;
             right: 5px;
         }
-
+        
         .floral-bottom-left {
             bottom: 5px;
             left: 5px;
         }
-
+        
         .floral-bottom-right {
             bottom: 5px;
             right: 5px;
         }
-
+        
         .content {
             position: relative;
             z-index: 2;
@@ -132,7 +130,7 @@
             height: 100%;
             overflow: hidden;
         }
-
+        
         .scrollable-content {
             width: 100%;
             display: flex;
@@ -144,7 +142,7 @@
             flex: 1;
             overflow: hidden;
         }
-
+        
         .silver-text {
             color: var(--bright-silver);
             text-shadow: var(--text-shadow);
@@ -158,13 +156,10 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         .highlight-text {
             color: var(--bright-silver);
-            text-shadow:
-                0 0 12px var(--silver-color),
-                0 0 20px var(--silver-color),
-                2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 0 12px var(--silver-color), 0 0 20px var(--silver-color), 2px 2px 4px rgba(0, 0, 0, 0.8);
             font-weight: 600;
             font-size: clamp(2.4rem, 6vw, 3.5rem);
             letter-spacing: 1px;
@@ -175,7 +170,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         .large-number {
             font-size: clamp(4rem, 22vw, 10rem);
             font-weight: bold;
@@ -183,9 +178,7 @@
             background: linear-gradient(45deg, var(--bright-silver), var(--silver-color), var(--light-silver));
             -webkit-background-clip: text;
             background-clip: text;
-            text-shadow:
-                0 0 15px rgba(192, 192, 192, 0.8),
-                0 0 30px rgba(192, 192, 192, 0.5);
+            text-shadow: 0 0 15px rgba(192, 192, 192, 0.8), 0 0 30px rgba(192, 192, 192, 0.5);
             margin: 0.8vh 0;
             font-family: 'Great Vibes', cursive;
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
@@ -193,14 +186,12 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         .couple-img {
             border-radius: 50%;
             border: 4px solid transparent;
             background: linear-gradient(45deg, var(--bright-silver), var(--silver-color)) border-box;
-            box-shadow:
-                0 0 15px rgba(192, 192, 192, 0.7),
-                0 0 30px rgba(192, 192, 192, 0.3);
+            box-shadow: 0 0 15px rgba(192, 192, 192, 0.7), 0 0 30px rgba(192, 192, 192, 0.3);
             width: clamp(210px, 42vw, 280px);
             height: clamp(210px, 42vw, 280px);
             object-fit: cover;
@@ -209,33 +200,26 @@
             padding: 2px;
             display: block;
         }
-
+        
         .couple-img:hover {
             transform: scale(1.05);
         }
-
         /* Imagen cuadrada para el slide 5 */
+        
         .photo-frame {
-            width: clamp(180px, 30vw, 400px);
-            height: clamp(180px, 30vw, 400px);
             object-fit: contain;
-            margin: 5px;
+            margin: 10px 20px;
             transition: transform 1.5s ease;
             display: block;
-            border: 5px solid white;
-            box-shadow:
-                0 0 25px rgba(255, 255, 255, 0.9),
-                0 0 50px rgba(255, 255, 255, 0.6),
-                0 0 0 2px rgba(0, 0, 0, 0.2),
-                0 10px 20px rgba(0, 0, 0, 0.3);
-            background: white;
-            padding: 5px;
+            border: 10px solid white;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.9), 0 0 2px rgba(255, 255, 255, 0.6), 0 0 0 2px rgba(0, 0, 0, 0.2), 0 0px 2px rgba(0, 0, 0, 0.3);
+            background: transparent;
         }
-
+        
         .photo-frame:hover {
             transform: scale(1.05);
         }
-
+        
         .typing-text {
             overflow: hidden;
             white-space: nowrap;
@@ -247,17 +231,16 @@
             line-height: 1.3;
             font-family: 'Cormorant Garamond', serif;
         }
-
+        
         @keyframes typing {
             from {
                 width: 0
             }
-
             to {
                 width: 100%
             }
         }
-
+        
         .fade-in {
             animation: fadeIn 2s;
             font-size: clamp(1.3rem, 4.5vw, 2.2rem);
@@ -268,61 +251,56 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
-
             to {
                 opacity: 1;
             }
         }
-
+        
         .pulse {
             animation: pulse 2.5s infinite;
         }
-
+        
         @keyframes pulse {
             0% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.03);
             }
-
             100% {
                 transform: scale(1);
             }
         }
-
+        
         .floating {
             animation: floating 8s ease-in-out infinite;
         }
-
+        
         @keyframes floating {
             0% {
                 transform: translate(0, 0px);
             }
-
             50% {
                 transform: translate(0, 8px);
             }
-
             100% {
                 transform: translate(0, -0px);
             }
         }
-
+        
         .slide-1,
         .slide-3,
         .slide-4,
         .slide-5,
         .slide-6 {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.4);
         }
-
+        
         .slide-2 {
             background-image: url('./assets/casados.jpg');
             background-position: center;
@@ -330,7 +308,7 @@
             background-size: cover;
             position: relative;
         }
-
+        
         .slide-2::before {
             content: '';
             position: absolute;
@@ -341,11 +319,11 @@
             background-color: rgba(0, 0, 0, 0.6);
             z-index: 1;
         }
-
+        
         .slide-2 .content {
             z-index: 2;
         }
-
+        
         .slide-5 {
             background-image: url('./assets/slide-5-fondo.jpg');
             background-size: cover;
@@ -353,7 +331,7 @@
             background-repeat: no-repeat;
             position: relative;
         }
-
+        
         .slide-5::before {
             content: '';
             position: absolute;
@@ -361,11 +339,11 @@
             background-color: rgba(180, 180, 180, 0.7);
             z-index: 1;
         }
-
+        
         .slide-5 .content {
             z-index: 2;
         }
-
+        
         .cover {
             position: fixed;
             top: 0;
@@ -380,28 +358,28 @@
             overflow: hidden;
             perspective: 1000px;
         }
-
+        
         .cover-left {
             left: 0;
             transform-origin: left center;
             background: linear-gradient(to right, rgba(248, 249, 250, 0.95), rgba(248, 249, 250, 0.85));
             box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
         }
-
+        
         .cover-right {
             right: 0;
             transform-origin: right center;
             background: linear-gradient(to left, rgba(248, 249, 250, 0.95), rgba(248, 249, 250, 0.85));
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
         }
-
+        
         .cover img {
             height: 100%;
             width: auto;
             object-fit: cover;
             opacity: 0.7;
         }
-
+        
         .heart-container {
             position: fixed;
             top: 50%;
@@ -411,7 +389,7 @@
             cursor: pointer;
             text-align: center;
         }
-
+        
         .heart {
             width: clamp(70px, 20vw, 100px);
             height: clamp(70px, 20vw, 100px);
@@ -419,13 +397,11 @@
             position: relative;
             transform: rotate(45deg);
             animation: heartbeat 2s infinite;
-            box-shadow:
-                0 0 15px rgba(192, 192, 192, 0.8),
-                0 0 30px rgba(192, 192, 192, 0.4);
+            box-shadow: 0 0 15px rgba(192, 192, 192, 0.8), 0 0 30px rgba(192, 192, 192, 0.4);
             margin: 0 auto;
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
         }
-
+        
         .heart:before,
         .heart:after {
             content: '';
@@ -435,110 +411,97 @@
             border-radius: 50%;
             position: absolute;
         }
-
+        
         .heart:before {
             top: -50%;
             left: 0;
         }
-
+        
         .heart:after {
             top: 0;
             left: -50%;
         }
-
+        
         @keyframes heartbeat {
             0% {
                 transform: rotate(45deg) scale(1);
             }
-
             25% {
                 transform: rotate(45deg) scale(1.1);
             }
-
             50% {
                 transform: rotate(45deg) scale(1);
             }
-
             75% {
                 transform: rotate(45deg) scale(1.1);
             }
-
             100% {
                 transform: rotate(45deg) scale(1);
             }
         }
-
+        
         .heart-text {
             color: black;
             font-size: clamp(1.2rem, 4vw, 1.8rem);
             margin-top: 20px;
-            text-shadow:
-                0 0 10px var(--silver-color),
-                0 0 15px var(--silver-color),
-                2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 10px var(--silver-color), 0 0 15px var(--silver-color), 2px 2px 4px rgba(0, 0, 0, 0.5);
             font-weight: bold;
             letter-spacing: 1px;
             font-family: 'Cormorant Garamond', serif;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         .map-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 0.8vh;
         }
-
+        
         .map-link {
             display: inline-block;
             color: var(--bright-silver);
             font-size: clamp(2rem, 5.7vw, 3rem);
             transition: transform 0.3s;
-            text-shadow:
-                0 0 10px var(--silver-color),
-                2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 10px var(--silver-color), 2px 2px 4px rgba(0, 0, 0, 0.5);
             animation: blink 2s infinite;
             cursor: pointer;
             text-decoration: none;
         }
-
+        
         .map-text {
             color: var(--bright-silver);
             font-size: clamp(0.9rem, 2.8vw, 1.4rem);
             margin-top: 0.3vh;
-            text-shadow:
-                0 0 8px var(--silver-color),
-                1px 1px 2px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 8px var(--silver-color), 1px 1px 2px rgba(0, 0, 0, 0.5);
             font-family: 'Cormorant Garamond', serif;
             animation: blink 2s infinite;
         }
-
+        
         @keyframes blink {
             0% {
                 opacity: 1;
             }
-
             50% {
                 opacity: 0.6;
             }
-
             100% {
                 opacity: 1;
             }
         }
-
+        
         .map-link:hover {
             transform: scale(1.2);
             color: var(--light-silver);
         }
-
+        
         .date-section {
             margin: 0.8vh 0;
             padding: 0.3rem;
             width: 100%;
         }
-
+        
         .date-section p {
             margin: 0.3vh 0;
             font-size: clamp(1.3rem, 4.5vw, 2.2rem);
@@ -547,7 +510,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         h1,
         h2,
         h3,
@@ -559,7 +522,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         p {
             font-size: clamp(1.3rem, 4.5vw, 2.2rem);
             margin: 0.3vh 0;
@@ -569,7 +532,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         .carousel-indicators {
             position: absolute;
             bottom: 12px;
@@ -580,7 +543,7 @@
             z-index: 10;
             gap: 6px;
         }
-
+        
         .indicator {
             width: 8px;
             height: 8px;
@@ -590,13 +553,13 @@
             transition: all 0.3s;
             border: 2px solid transparent;
         }
-
+        
         .indicator.active {
             background-color: var(--bright-silver);
             box-shadow: 0 0 8px var(--silver-color);
             transform: scale(1.2);
         }
-
+        
         .music-control {
             position: fixed;
             top: 12px;
@@ -618,16 +581,16 @@
             border: none;
             outline: none;
         }
-
+        
         .music-control:hover {
             transform: scale(1.1);
             box-shadow: 0 0 12px var(--bright-silver);
         }
-
+        
         .hidden {
             display: none;
         }
-
+        
         .swipe-hint {
             position: absolute;
             bottom: 35px;
@@ -639,37 +602,30 @@
             opacity: 0.8;
             animation: fadeInOut 3s infinite;
             z-index: 10;
-            text-shadow:
-                0 0 8px var(--silver-color),
-                1px 1px 2px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 8px var(--silver-color), 1px 1px 2px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
             font-family: 'Cormorant Garamond', serif;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-
+        
         @keyframes fadeInOut {
             0% {
                 opacity: 0.5;
             }
-
             50% {
                 opacity: 0.9;
             }
-
             100% {
                 opacity: 0.5;
             }
         }
-
         /* Mejorar contraste */
+        
         .high-contrast {
-            text-shadow:
-                2px 2px 4px rgba(0, 0, 0, 0.8),
-                0 0 10px var(--silver-color),
-                0 0 15px var(--silver-color) !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px var(--silver-color), 0 0 15px var(--silver-color) !important;
         }
-
+        
         .names-container {
             display: flex;
             flex-direction: column;
@@ -678,119 +634,101 @@
             width: 100%;
             gap: 0.8vh;
         }
-
+        
         .name {
             font-size: clamp(2.2rem, 14vw, 8rem);
             font-weight: 600;
             color: var(--bright-silver);
-            text-shadow:
-                0 0 15px var(--silver-color),
-                0 0 25px var(--silver-color),
-                2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 0 15px var(--silver-color), 0 0 25px var(--silver-color), 2px 2px 4px rgba(0, 0, 0, 0.8);
             line-height: 1;
             font-family: 'Alex Brush', cursive;
             word-wrap: break-word;
             overflow-wrap: break-word;
             letter-spacing: 1px;
         }
-
+        
         .ampersand {
             font-size: clamp(2.5rem, 16vw, 9rem);
             color: var(--bright-silver);
-            text-shadow:
-                0 0 15px var(--silver-color),
-                0 0 25px var(--silver-color),
-                2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 0 15px var(--silver-color), 0 0 25px var(--silver-color), 2px 2px 4px rgba(0, 0, 0, 0.8);
             line-height: 1;
             font-family: 'Great Vibes', cursive;
             margin: 0.3vh 0;
         }
-
         /* Ajustes específicos para diferentes tamaños de pantalla */
+        
         @media (max-width: 768px) {
             .slide {
                 padding: 0.4rem;
             }
-
             .scrollable-content {
                 gap: 0.8vh;
             }
         }
-
+        
         @media (max-width: 480px) {
             .slide {
                 padding: 0.3rem;
             }
-
             .scrollable-content {
                 gap: 0.6vh;
             }
         }
-
         /* Ajustes para orientación horizontal */
+        
         @media (max-height: 500px) and (orientation: landscape) {
             .slide {
                 padding: 0.2rem;
             }
-
             .scrollable-content {
                 gap: 0.4vh;
                 justify-content: flex-start;
                 padding-top: 0.8vh;
             }
-
             .silver-text,
             .highlight-text {
                 font-size: clamp(2.1rem, 4.5vw, 2.8rem);
                 margin: 0.2vh 0;
             }
-
             .large-number {
                 font-size: clamp(2.5rem, 16vw, 5rem);
                 margin: 0.4vh 0;
             }
-
             .couple-img {
                 width: clamp(70px, 18vw, 100px);
                 height: clamp(70px, 18vw, 100px);
                 margin: 0.4vh auto;
             }
-
             .photo-frame {
                 width: clamp(180px, 30vw, 400px);
                 height: clamp(180px, 300vw, 400px);
                 margin: 5px;
             }
-
             .name {
                 font-size: clamp(1.8rem, 12vw, 4rem);
             }
-
             .ampersand {
                 font-size: clamp(2rem, 14vw, 5rem);
             }
-
             .date-section {
                 margin: 0.4vh 0;
             }
-
             .date-section p {
                 font-size: clamp(1rem, 3.5vw, 1.6rem);
                 margin: 0.2vh 0;
             }
         }
-
         /* Prevenir zoom y mejorar experiencia táctil */
+        
         @media (max-width: 768px) {
-
             input,
             textarea,
             select {
                 font-size: 16px;
             }
         }
-
         /* Eliminar cualquier posibilidad de scroll */
+        
         body,
         html,
         .carousel-container,
@@ -799,34 +737,34 @@
         .scrollable-content {
             overflow: hidden !important;
         }
-
         /* Asegurar que las imágenes no se salgan de la pantalla */
+        
         .scrollable-content img {
             max-width: 100%;
             max-height: 28vh;
             object-fit: contain;
         }
-
         /* Asegurar que el texto sea visible en el slide 3 */
+        
         .slide-3 .highlight-text {
             font-size: clamp(1.5rem, 4.3vw, 2.3rem);
             line-height: 1.3;
         }
-
         /* Optimización para Safari iOS */
+        
         @supports (-webkit-touch-callout: none) {
             .carousel-container {
                 -webkit-overflow-scrolling: touch;
             }
         }
-
         /* Mejoras de legibilidad */
+        
         .text-content {
             padding: 0.3rem;
             width: 100%;
         }
-
         /* Asegurar que todo el contenido sea visible */
+        
         .safe-area {
             width: 100%;
             height: 100%;
@@ -835,12 +773,12 @@
             justify-content: center;
             align-items: center;
         }
-
         /* Ajuste específico para el slide 4 */
+        
         .slide-4 .scrollable-content {
             gap: 0.6vh;
         }
-
+        
         .slide-4 .highlight-text {
             font-size: clamp(1.5rem, 4.3vw, 2.3rem);
             line-height: 1.2;
@@ -881,8 +819,7 @@
         <div class="carousel" id="carousel">
             <!-- Slide 1: Título principal -->
             <section class="slide slide-1">
-                <img src="./assets/rosas-arriba-izquierda.png" alt="Rosas arriba"
-                    class="floral-decoration floral-top-left floating d-none">
+                <img src="./assets/rosas-arriba-izquierda.png" alt="Rosas arriba" class="floral-decoration floral-top-left floating d-none">
                 <div class="content">
                     <div class="scrollable-content">
                         <div class="safe-area">
@@ -892,14 +829,12 @@
                         </div>
                     </div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas abajo" class="floral-decoration floral-bottom-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas abajo" class="floral-decoration floral-bottom-right floating d-none">
             </section>
 
             <!-- Slide 2: Nombres de la pareja -->
             <section class="slide slide-2">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas arriba" class="floral-decoration floral-top-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas arriba" class="floral-decoration floral-top-right floating d-none">
                 <div class="content">
                     <div class="scrollable-content">
                         <div class="safe-area">
@@ -911,16 +846,13 @@
                         </div>
                     </div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas abajo" class="floral-decoration floral-bottom-left floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas abajo" class="floral-decoration floral-bottom-left floating d-none">
             </section>
 
             <!-- Slide 3: Mensaje de amor -->
             <section class="slide slide-3">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas arriba derecha" class="floral-decoration floral-top-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas arriba derecha" class="floral-decoration floral-top-right floating d-none">
                 <div class="content">
                     <div class="scrollable-content">
                         <div class="safe-area">
@@ -936,16 +868,13 @@
                         </div>
                     </div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rama abajo izquierda" class="floral-decoration floral-bottom-left floating d-none">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rama abajo izquierda" class="floral-decoration floral-bottom-left floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
             </section>
 
             <!-- Slide 4: Invitación -->
             <section class="slide slide-4">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
                 <div class="content">
                     <div class="scrollable-content">
                         <div class="safe-area">
@@ -958,14 +887,12 @@
                         </div>
                     </div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
             </section>
 
             <!-- Slide 5: Imagen con marco de foto real -->
             <section class="slide slide-5">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
                 <div class="content">
                     <div class="scrollable-content">
                         <div class="safe-area">
@@ -973,21 +900,17 @@
                         </div>
                     </div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
             </section>
 
             <!-- Slide 6: Detalles del evento -->
             <section class="slide slide-6">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas arriba derecha" class="floral-decoration floral-top-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas arriba izquierda" class="floral-decoration floral-top-left floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas arriba derecha" class="floral-decoration floral-top-right floating d-none">
                 <div class="content">
                     <div class="scrollable-content">
                         <div class="safe-area">
-                            <img src="./assets/novios.png" alt="Imagen de novios" class="couple-img pulse"
-                                style="width: clamp(180px, 28vw, 200px); height: clamp(180px, 28vw, 200px);">
+                            <img src="./assets/novios.png" alt="Imagen de novios" class="couple-img pulse" style="width: clamp(180px, 28vw, 200px); height: clamp(180px, 28vw, 200px);">
                             <div class="text-content">
                                 <p class="highlight-text high-contrast typing-text">Acompáñanos el día</p>
                                 <div class="date-section">
@@ -999,8 +922,7 @@
                                     <p class="highlight-text high-contrast fade-in">DIRECCIÓN: 12 de abril</p>
                                 </div>
                                 <div class="map-container">
-                                    <a href="https://maps.app.goo.gl/eZKgRJKq8RzwMJpT7" target="_blank"
-                                        rel="noopener noreferrer" class="map-link" id="map-link">
+                                    <a href="https://maps.app.goo.gl/eZKgRJKq8RzwMJpT7" target="_blank" rel="noopener noreferrer" class="map-link" id="map-link">
                                         <i class="fas fa-map-marked-alt"></i>
                                     </a>
                                     <div class="map-text">Clic para ver en el mapa</div>
@@ -1009,10 +931,8 @@
                         </div>
                     </div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas abajo izquierda" class="floral-decoration floral-bottom-left floating d-none">
-                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas abajo izquierda" class="floral-decoration floral-bottom-left floating d-none">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rosas abajo derecha" class="floral-decoration floral-bottom-right floating d-none">
             </section>
         </div>
 
@@ -1029,7 +949,7 @@
     </audio>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const carousel = document.getElementById('carousel');
             const carouselContainer = document.getElementById('invitation-content');
             const invitationContent = document.getElementById('invitation-content');
@@ -1112,7 +1032,7 @@
             carouselContainer.addEventListener('touchend', endDrag);
 
             function startDrag(e) {
-                if (e.target.closest('a')) return; // No iniciar drag sobre enlaces
+                if (e.target.closest('a')) return;
                 isDragging = true;
                 startX = e.pageX;
                 carouselContainer.classList.add('grabbing');
@@ -1120,7 +1040,7 @@
             }
 
             function startDragTouch(e) {
-                if (e.target.closest('a')) return; // No iniciar drag sobre enlaces
+                if (e.target.closest('a')) return;
                 isDragging = true;
                 startX = e.touches[0].clientX;
                 carouselContainer.classList.add('grabbing');
@@ -1161,7 +1081,7 @@
                 }
             }
 
-            // ---------------- Apertura invitación ----------------
+            // ---------------- Apertura invitación (corazón original) ----------------
             heartContainer.addEventListener('click', openInvitation);
             heartContainer.addEventListener('touchend', openInvitation);
 
@@ -1191,7 +1111,7 @@
             }
 
             // ---------------- Control música ----------------
-            musicControl.addEventListener('click', function () {
+            musicControl.addEventListener('click', function() {
                 if (isMusicPlaying) {
                     backgroundMusic.pause();
                     musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
@@ -1204,13 +1124,37 @@
                 isMusicPlaying = !isMusicPlaying;
             });
 
-            // ---------------- Enlace mapa ----------------
-            mapLink.addEventListener('click', function (e) {
+            // ---------------- Enlace mapa (pausar música) ----------------
+            mapLink.addEventListener('click', function() {
                 console.log('Enlace del mapa clickeado');
+                if (isMusicPlaying) {
+                    backgroundMusic.pause();
+                    musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    isMusicPlaying = false;
+                }
             });
 
-            mapLink.addEventListener('touchend', function (e) {
+            mapLink.addEventListener('touchend', function() {
                 console.log('Enlace del mapa tocado');
+                if (isMusicPlaying) {
+                    backgroundMusic.pause();
+                    musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    isMusicPlaying = false;
+                }
+            });
+
+            // ---------------- Reiniciar al cerrar o recargar ----------------
+            window.addEventListener('beforeunload', function() {
+                backgroundMusic.pause();
+                backgroundMusic.currentTime = 0;
+
+                // Restaurar tapas cerradas
+                heartContainer.style.display = 'flex';
+                coverLeft.style.display = 'block';
+                coverRight.style.display = 'block';
+                invitationContent.classList.add('hidden');
+                musicControl.classList.add('hidden');
+                isMusicPlaying = false;
             });
 
             // ---------------- Efecto de escritura ----------------
@@ -1220,7 +1164,7 @@
             });
 
             // ---------------- Navegación con teclado ----------------
-            document.addEventListener('keydown', function (e) {
+            document.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowLeft') {
                     goToSlide(currentSlide - 1);
                 } else if (e.key === 'ArrowRight') {
@@ -1229,7 +1173,7 @@
             });
 
             // ---------------- Redimensionar ventana ----------------
-            window.addEventListener('resize', function () {
+            window.addEventListener('resize', function() {
                 goToSlide(currentSlide);
                 adjustLayoutForDevice();
             });
@@ -1238,6 +1182,7 @@
             adjustLayoutForDevice();
         });
     </script>
+
 
 </body>
 
