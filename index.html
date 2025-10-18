@@ -783,6 +783,35 @@
             font-size: clamp(1.5rem, 4.3vw, 2.3rem);
             line-height: 1.2;
         }
+        
+        .texto-biblico {
+            text-align: center;
+            position: relative;
+            margin: 30px 0;
+            padding: 20px 0;
+        }
+        
+        .texto-biblico::before,
+        .texto-biblico::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            width: 120px;
+            /* ajusta el largo */
+            height: 3px;
+            /* grosor de la línea */
+            background: linear-gradient(to right, transparent, silver, transparent);
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .texto-biblico::before {
+            top: 0;
+        }
+        
+        .texto-biblico::after {
+            bottom: 0;
+        }
     </style>
 </head>
 
@@ -823,9 +852,15 @@
                 <div class="content">
                     <div class="scrollable-content">
                         <div class="safe-area">
-                            <h3 class="silver-text high-contrast typing-text">Nuestras bodas de plata</h3>
+                            <h2 class="silver-text high-contrast typing-text">Nuestras bodas de plata</h2>
                             <h1 class="large-number pulse">25</h1>
-                            <h3 class="silver-text high-contrast typing-text">Años de vida</h3>
+                            <h2 class="silver-text high-contrast typing-text">Años de vida</h2>
+                            <br>
+                            <div class="texto-biblico">
+                                <h2 class="silver-text high-contrast ">Mateo 19:6</h2>
+                                <h2 class="silver-text high-contrast ">Lo que Dios ha unido, que</h2>
+                                <h2 class="silver-text high-contrast ">no lo separe ningún hombre.</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
